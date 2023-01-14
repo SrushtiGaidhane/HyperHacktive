@@ -1,0 +1,66 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    background-color:  black;    
+    height:75px;
+}
+.outer{
+    display: flex;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    height: 500px;
+    text-align: center;
+    margin-left:100px;
+    margin-top: 70px;
+    background-color: #10A19D;
+    padding-top: 20px;
+    margin-left: 580px;
+  }
+  .logo{
+    width: 200px;
+    height:200px;
+    margin-left: 100px;
+  }
+  .det{
+    font-size: 25px;
+    text-align: left;
+    color: white;
+    margin-left: 60px;
+  }
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+  .container{
+    background-color: #2f4242;
+    margin-left: 900px;
+    margin-top: 70px;
+    max-width: 400px;
+    height: 500px;
+    text-align: center;
+  }
