@@ -44,7 +44,7 @@ while (True):
         print("matches",matches)
         print("faceDis",faceDis)
 
-        matchIndex=np.argmin(faceDis)
+        #matchIndex=np.argmin(faceDis) #current change
         print("Match Index",matchIndex)
 
         if(matches[matchIndex]):
