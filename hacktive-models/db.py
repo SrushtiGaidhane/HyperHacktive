@@ -1,14 +1,17 @@
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
+from flask_pymongo import PyMongo
+# import firebase_admin
+# from firebase_admin import credentials
+# from firebase_admin import db
 import cv2
 import numpy as np
-from pyzbar.pyzbar import decode
+# from pyzbar.pyzbar import decode
+
  
 cred = credentials.Certificate("serviceAccountKey.json")
-firebase_admin.initialize_app(cred, {
-    'databaseURL': "https://faceattendance-20d3c-default-rtdb.firebaseio.com/"
-})
+# firebase_admin.initialize_app(cred, {
+#     'databaseURL': "https://faceattendance-20d3c-default-rtdb.firebaseio.com/"
+# })
+
  
 ref = db.reference('Students')
  
