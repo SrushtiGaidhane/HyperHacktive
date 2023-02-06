@@ -1,7 +1,7 @@
 import pymongo
 import urllib.request
 from PIL import Image
-# import cv2
+import cv2
 import face_recognition
 import pickle
 # import os
@@ -23,17 +23,20 @@ client = pymongo.MongoClient("mongodb+srv://FinalDatabase:HyperHactive@cluster0.
 # # Collection Name
 # col = db.Final
 # x = col.find_one({'_id':1})
-regno=211081030 #from QR
+regno=211081010 #from QR
 #IMPORTANT : Dictionary pattern for ref 
 #{'_id': 1, 'RegNo': 211080001, 'Name': 'Samarth Gupta', 'Photo': 'https://surveyheartmedia.s3.ap-south-1.amazonaws.com/files/7f505e0951dc0254d2efcfde04d2ff/63d5d78a910004541035906d/sh_1674977540527.jpg'}
 cursor=client.FinalDatabase.Final.find_one({'RegNo':regno})
-#print(x,type(x))
 img_link=cursor['Photo']  
 urllib.request.urlretrieve(img_link,"img.png") 
 #img = Image.open("gfg.png")
 #img.show()
 image1 = face_recognition.load_image_file("img.png")
 
+# black_link="https://images.unsplash.com/photo-1603366615917-1fa6dad5c4fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGxhaW4lMjBibGFja3xlbnwwfHwwfHw%3D&w=1000&q=80"
+black_link="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/1200px-Elon_Musk_Royal_Society_%28crop2%29.jpg"
+urllib.request.urlretrieve(black_link,"black.png") 
+black =  face_recognition.load_image_file("black.png")
 
 # image1_encoding = face_recognition.face_encodings(image1)[0]
 # print(image1_encoding) 
@@ -45,14 +48,28 @@ image1 = face_recognition.load_image_file("img.png")
 #we use [0] to grab the first person’s Face Encoding’s. 
 #By default we assume that there are more than one person in the image
 
-def findEncodings(img):
-    encode = face_recognition.face_encodings(img)[0]
-    return encode
+# def findEncodings(img):
+#     encode = face_recognition.face_encodings(img)[0]
+#     return encode
+def findEncodings(imagesList):
+    encodeList = []
+    for img in imagesList:
+        #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        #print(type(img))
+        encode = face_recognition.face_encodings(img)[0]
+        encodeList.append(encode)
+
+    return encodeList
+
 
 studentIds=[]
 studentIds.append(regno)
+studentIds.append(0)
+image_list=[]
+image_list.append(image1)
+image_list.append(black)
 print("Encoding ...")
-encodeListKnown = findEncodings(image1)
+encodeListKnown = findEncodings(image_list)
 encodeListKnownWithIds = [encodeListKnown, studentIds]
 print("Encoding Complete")
 
