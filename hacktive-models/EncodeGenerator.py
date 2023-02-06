@@ -4,20 +4,10 @@ from PIL import Image
 import cv2
 import face_recognition
 import pickle
-# import os
-# import firebase_admin
-# from firebase_admin import credentials
-# from firebase_admin import db
-# from firebase_admin import  storage
-
-# cred = credentials.Certificate("serviceAccountKey.json")
-# firebase_admin.initialize_app(cred, {
-#     'databaseURL': "https://faceattendance-20d3c-default-rtdb.firebaseio.com/",
-#     'storageBucket': "faceattendance-20d3c.appspot.com"
-# })
-
 
 client = pymongo.MongoClient("mongodb+srv://FinalDatabase:HyperHactive@cluster0.xdhqnvi.mongodb.net/FinalDatabase?retryWrites=true&w=majority")
+cursor2=client.FinalDatabase.Final.find({},{'_id':0,'RegNo':1})
+print(cursor2)
 # Database Name
 # db = client.FinalDatabase
 # # Collection Name
@@ -27,6 +17,7 @@ regno=211081010 #from QR
 #IMPORTANT : Dictionary pattern for ref 
 #{'_id': 1, 'RegNo': 211080001, 'Name': 'Samarth Gupta', 'Photo': 'https://surveyheartmedia.s3.ap-south-1.amazonaws.com/files/7f505e0951dc0254d2efcfde04d2ff/63d5d78a910004541035906d/sh_1674977540527.jpg'}
 cursor=client.FinalDatabase.Final.find_one({'RegNo':regno})
+print(cursor)
 img_link=cursor['Photo']  
 urllib.request.urlretrieve(img_link,"img.png") 
 #img = Image.open("gfg.png")
@@ -77,7 +68,6 @@ file = open("EncodeFile.p", 'wb')
 pickle.dump(encodeListKnownWithIds, file)
 file.close()
 print("File Saved")
-
 
 
 # print(x)
